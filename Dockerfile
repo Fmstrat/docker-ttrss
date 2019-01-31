@@ -21,8 +21,9 @@ RUN docker-php-ext-install -j$(nproc) gd mysqli pdo_mysql pgsql pdo_pgsql opcach
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Install TT-RSS
-RUN curl -o /tmp/test.tar.gz -L https://gitlab.com/gothfox/tt-rss/-/archive/master/tt-rss-master.tar.gz
-RUN tar xf /tmp/test.tar.gz -C /var/www/html --strip-components=1
+RUN curl -o /tmp/ttrss.tar.gz -L https://gitlab.com/gothfox/tt-rss/-/archive/master/tt-rss-master.tar.gz
+RUN tar xf /tmp/ttrss.tar.gz -C /var/www/html --strip-components=1
+RUN rm /tmp/ttrss.tar.gz
 
 # Link PHP for hard-coded path in tt-rss
 RUN ln -sf /usr/local/bin/php /usr/bin/php
